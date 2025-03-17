@@ -1,4 +1,4 @@
-package com.example.suhareva_up.ui.theme
+package com.example.suhareva_up.Presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

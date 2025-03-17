@@ -1,4 +1,4 @@
-package com.example.suhareva_up
+package com.example.suhareva_up.Presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,7 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.suhareva_up.ui.theme.Suhareva_UPTheme
+import com.example.suhareva_up.Presentation.ui.theme.Suhareva_UPTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
