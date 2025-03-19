@@ -14,6 +14,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -28,12 +29,18 @@ fun MainTextField(value: String, onvaluechange: (String) -> Unit){
         onValueChange = {
             onvaluechange(it)
         },
+        placeholder = { Text("абвгд")  },
         modifier = Modifier.width(335.dp),
         colors = TextFieldDefaults.colors(
             unfocusedContainerColor = Color(247, 247, 249),
             focusedContainerColor = Color(247, 247, 249),
             focusedTextColor = Color(106, 106, 106),
-            unfocusedTextColor = Color(106, 106, 106)
+            unfocusedTextColor = Color(106, 106, 106),
+            focusedPlaceholderColor = Color(106, 106, 106),
+            unfocusedPlaceholderColor = Color(106, 106, 106),
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            disabledIndicatorColor = Color.Transparent
         ),
             shape = RoundedCornerShape (15.dp))
 }
@@ -53,7 +60,12 @@ fun PasswordTextField(value: String, onvaluechange: (String) -> Unit){
             unfocusedContainerColor = Color(247, 247, 249),
             focusedContainerColor = Color(247, 247, 249),
             focusedTextColor = Color(106, 106, 106),
-            unfocusedTextColor = Color(106, 106, 106)
+            unfocusedTextColor = Color(106, 106, 106),
+            focusedPlaceholderColor = Color(106, 106, 106),
+            unfocusedPlaceholderColor = Color(106, 106, 106),
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            disabledIndicatorColor = Color.Transparent
     ),
         shape = RoundedCornerShape (15.dp),
         visualTransformation = if (passwordVisible) PasswordVisualTransformation() else VisualTransformation.None,
@@ -64,12 +76,14 @@ fun PasswordTextField(value: String, onvaluechange: (String) -> Unit){
                 if (passwordVisible) {
                     Icon(
                         painter = painterResource(id = R.drawable.eye_close),
-                        contentDescription = ""
+                        contentDescription = "",
+                        tint = Color(43, 43, 43)
                     )
                 } else {
                     Icon(
                         painter = painterResource(id = R.drawable.eye_open),
-                        contentDescription = ""
+                        contentDescription = "",
+                        tint = Color(43, 43, 43)
                     )
                 }
             }
@@ -79,7 +93,7 @@ fun PasswordTextField(value: String, onvaluechange: (String) -> Unit){
 
 
 @Composable
-fun EmailTextField(value: String, onvaluechange: (String) -> Unit){
+fun EmailTextField(value: String, error: Boolean,  onvaluechange: (String) -> Unit){
     TextField(
         value = value,
         onValueChange = {
@@ -91,7 +105,12 @@ fun EmailTextField(value: String, onvaluechange: (String) -> Unit){
             unfocusedContainerColor = Color(247, 247, 249),
             focusedContainerColor = Color(247, 247, 249),
             focusedTextColor = Color(106, 106, 106),
-            unfocusedTextColor = Color(106, 106, 106)
+            unfocusedTextColor = Color(106, 106, 106),
+            focusedPlaceholderColor = Color(106, 106, 106),
+            unfocusedPlaceholderColor = Color(106, 106, 106),
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            disabledIndicatorColor = Color.Transparent
         ),
         shape = RoundedCornerShape (15.dp))
 }

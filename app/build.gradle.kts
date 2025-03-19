@@ -69,4 +69,6 @@ dependencies {
     implementation(libs.ktor.client.android)
 
     implementation(libs.androidx.navigation.compose)
+
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 }
