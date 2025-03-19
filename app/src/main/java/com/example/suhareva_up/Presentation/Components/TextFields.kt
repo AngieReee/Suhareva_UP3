@@ -17,16 +17,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.suhareva_up.R
 
-@Preview
+
 @Composable
-fun MainTextField(){
+fun MainTextField(value: String, onvaluechange: (String) -> Unit){
     TextField(
-        value = "",
-        onValueChange = {},
+        value = value,
+        onValueChange = {
+            onvaluechange(it)
+        },
         modifier = Modifier.width(335.dp),
         colors = TextFieldDefaults.colors(
             unfocusedContainerColor = Color(247, 247, 249),
@@ -37,13 +38,15 @@ fun MainTextField(){
             shape = RoundedCornerShape (15.dp))
 }
 
-@Preview
+
 @Composable
-fun PasswordTextField(){
+fun PasswordTextField(value: String, onvaluechange: (String) -> Unit){
     var passwordVisible by remember { mutableStateOf(true) } //видимость пароля
     TextField(
-        value = "",
-        onValueChange = {},
+        value = value,
+        onValueChange = {
+            onvaluechange(it)
+        },
         placeholder = { Text("12345") },
         modifier = Modifier.width(335.dp),
         colors = TextFieldDefaults . colors (
@@ -74,12 +77,14 @@ fun PasswordTextField(){
     )
 }
 
-@Preview
+
 @Composable
-fun EmailTextField(){
+fun EmailTextField(value: String, onvaluechange: (String) -> Unit){
     TextField(
-        value = "",
-        onValueChange = {},
+        value = value,
+        onValueChange = {
+            onvaluechange(it)
+        },
         placeholder = { Text("xyz@gmail.com") },
         modifier = Modifier.width(335.dp),
         colors = TextFieldDefaults.colors(
