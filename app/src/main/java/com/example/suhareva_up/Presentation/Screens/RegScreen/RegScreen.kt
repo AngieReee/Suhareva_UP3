@@ -3,6 +3,7 @@ package com.example.suhareva_up.Presentation.Screens.RegScreen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,24 +11,34 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.suhareva_up.Presentation.Components.BackButton
+import com.example.suhareva_up.Presentation.Components.CustomCheckbox
 import com.example.suhareva_up.Presentation.Components.EmailTextField
 import com.example.suhareva_up.Presentation.Components.MainButton
 import com.example.suhareva_up.Presentation.Components.MainTextField
+import com.example.suhareva_up.Presentation.Components.NavButton
 import com.example.suhareva_up.Presentation.Components.PasswordTextField
+import com.example.suhareva_up.Presentation.Navigations.NavigationRoutes
 
 @Composable
 fun RegScreen(navController: NavController, regViewModel: RegViewModel = viewModel()){
 
+    var isChecked by remember { mutableStateOf(false) }
     val uiState = regViewModel.UiState
+    var paddingStart: Int = 30;
     
     Column(
         modifier = Modifier
@@ -64,7 +75,7 @@ fun RegScreen(navController: NavController, regViewModel: RegViewModel = viewMod
                 text = "Ваше имя",
                 fontSize = 19.sp,
                 color = Color.Black,
-                modifier = Modifier.padding(15.dp, 0.dp, 0.dp, 0.dp)
+                modifier = Modifier.padding(paddingStart.dp, 0.dp, 0.dp, 0.dp)
             )
             Spacer(Modifier.height(20.dp))
             Column(
@@ -78,7 +89,7 @@ fun RegScreen(navController: NavController, regViewModel: RegViewModel = viewMod
                  text = "Email",
                  fontSize = 19.sp,
                  color = Color.Black,
-                 modifier = Modifier.padding(15.dp, 0.dp, 0.dp, 0.dp)
+                 modifier = Modifier.padding(paddingStart.dp, 0.dp, 0.dp, 0.dp)
              )
             Spacer(Modifier.height(20.dp))
             Column(
@@ -96,7 +107,7 @@ fun RegScreen(navController: NavController, regViewModel: RegViewModel = viewMod
                  text = "Пароль",
                  fontSize = 19.sp,
                  color = Color.Black,
-                 modifier = Modifier.padding(15.dp, 0.dp, 0.dp, 0.dp)
+                 modifier = Modifier.padding(paddingStart.dp, 0.dp, 0.dp, 0.dp)
              )
             Spacer(Modifier.height(20.dp))
              Column(
@@ -112,12 +123,37 @@ fun RegScreen(navController: NavController, regViewModel: RegViewModel = viewMod
                  }
              }
              Spacer(Modifier.height(20.dp))
+            Row {
+                CustomCheckbox(modifier = Modifier.padding(paddingStart.dp, 16.dp, 0.dp, 0.dp),
+                    checked = isChecked,
+                    onCheckedChange = { isChecked = it })
+                Text(text="Даю согласие на обработку персональных данных",
+                    textDecoration = TextDecoration.Underline,
+                    fontWeight = FontWeight.W200,
+                    modifier = Modifier.padding(16.dp),
+                    color = Color.Black)
+            }
+
+
+
+
+
              Column(
                  modifier = Modifier.fillMaxWidth(),
                  horizontalAlignment = Alignment.CenterHorizontally
              ) {
-                 MainButton("Зарегистрироваться") { regViewModel.SignUp() }
+                 MainButton("Зарегистрироваться",
+                     checked = isChecked) { regViewModel.SignUp() }
              }
+
+            Row(modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center) {
+                NavButton("Есть аккаунт?", "Войти") { navController.navigate(NavigationRoutes.SIGNIN) {
+                    popUpTo(NavigationRoutes.REG) {
+                        inclusive = true
+                    }
+                } }
+            }
         }
     }
 }

@@ -14,13 +14,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.example.suhareva_up.R
 
+val textFieldWeidht: Int = 300
 
 @Composable
 fun MainTextField(value: String, onvaluechange: (String) -> Unit){
@@ -30,7 +30,7 @@ fun MainTextField(value: String, onvaluechange: (String) -> Unit){
             onvaluechange(it)
         },
         placeholder = { Text("абвгд")  },
-        modifier = Modifier.width(335.dp),
+        modifier = Modifier.width(textFieldWeidht.dp),
         colors = TextFieldDefaults.colors(
             unfocusedContainerColor = Color(247, 247, 249),
             focusedContainerColor = Color(247, 247, 249),
@@ -55,7 +55,7 @@ fun PasswordTextField(value: String, onvaluechange: (String) -> Unit){
             onvaluechange(it)
         },
         placeholder = { Text("12345") },
-        modifier = Modifier.width(335.dp),
+        modifier = Modifier.width(textFieldWeidht.dp),
         colors = TextFieldDefaults . colors (
             unfocusedContainerColor = Color(247, 247, 249),
             focusedContainerColor = Color(247, 247, 249),
@@ -100,7 +100,7 @@ fun EmailTextField(value: String, error: Boolean,  onvaluechange: (String) -> Un
             onvaluechange(it)
         },
         placeholder = { Text("xyz@gmail.com") },
-        modifier = Modifier.width(335.dp),
+        modifier = Modifier.width(textFieldWeidht.dp),
         colors = TextFieldDefaults.colors(
             unfocusedContainerColor = Color(247, 247, 249),
             focusedContainerColor = Color(247, 247, 249),
