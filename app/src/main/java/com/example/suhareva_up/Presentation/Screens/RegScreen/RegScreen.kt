@@ -39,6 +39,7 @@ fun RegScreen(navController: NavController, regViewModel: RegViewModel = viewMod
     var isChecked by remember { mutableStateOf(false) }
     val uiState = regViewModel.UiState
     var paddingStart: Int = 30;
+    var spacer: Int = 15;
     
     Column(
         modifier = Modifier
@@ -54,17 +55,16 @@ fun RegScreen(navController: NavController, regViewModel: RegViewModel = viewMod
                 text = "Регистрация",
                 fontSize = 32.sp,
                 fontWeight = FontWeight.W400,
-                modifier = Modifier.padding(0.dp, 10.dp, 0.dp, 0.dp),
+                modifier = Modifier.padding(0.dp, 20.dp, 0.dp, 0.dp),
                 color = Color.Black
             )
             Text(
                 text = "Заполните свои данные",
                 fontSize = 18.sp,
-                fontWeight = FontWeight.W400,
+                fontWeight = FontWeight.W300,
                 modifier = Modifier.padding(0.dp, 10.dp, 0.dp, 0.dp),
                 color = Color(112, 123, 129) 
             )
-
         }
         Spacer(Modifier.height(40.dp))
         Column(
@@ -77,21 +77,21 @@ fun RegScreen(navController: NavController, regViewModel: RegViewModel = viewMod
                 color = Color.Black,
                 modifier = Modifier.padding(paddingStart.dp, 0.dp, 0.dp, 0.dp)
             )
-            Spacer(Modifier.height(20.dp))
+            Spacer(Modifier.height(spacer.dp))
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ){
                 MainTextField(uiState.name) { regViewModel.UpdateRegClass(uiState.copy(name = it)) }
             }
-            Spacer(Modifier.height(20.dp))
+            Spacer(Modifier.height(spacer.dp))
              Text(
                  text = "Email",
                  fontSize = 19.sp,
                  color = Color.Black,
                  modifier = Modifier.padding(paddingStart.dp, 0.dp, 0.dp, 0.dp)
              )
-            Spacer(Modifier.height(20.dp))
+            Spacer(Modifier.height(spacer.dp))
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -102,14 +102,14 @@ fun RegScreen(navController: NavController, regViewModel: RegViewModel = viewMod
                     )
                 }
             }
-             Spacer(Modifier.height(20.dp))
+             Spacer(Modifier.height(spacer.dp))
              Text(
                  text = "Пароль",
                  fontSize = 19.sp,
                  color = Color.Black,
                  modifier = Modifier.padding(paddingStart.dp, 0.dp, 0.dp, 0.dp)
              )
-            Spacer(Modifier.height(20.dp))
+            Spacer(Modifier.height(spacer.dp))
              Column(
                  modifier = Modifier.fillMaxWidth(),
                  horizontalAlignment = Alignment.CenterHorizontally
@@ -122,22 +122,18 @@ fun RegScreen(navController: NavController, regViewModel: RegViewModel = viewMod
                      )
                  }
              }
-             Spacer(Modifier.height(20.dp))
+             Spacer(Modifier.height(spacer.dp))
             Row {
-                CustomCheckbox(modifier = Modifier.padding(paddingStart.dp, 16.dp, 0.dp, 0.dp),
+                CustomCheckbox(modifier = Modifier.padding(paddingStart.dp, 10.dp, 0.dp, 0.dp),
                     checked = isChecked,
                     onCheckedChange = { isChecked = it })
                 Text(text="Даю согласие на обработку персональных данных",
                     textDecoration = TextDecoration.Underline,
                     fontWeight = FontWeight.W200,
-                    modifier = Modifier.padding(16.dp),
+                    modifier = Modifier.padding(10.dp),
                     color = Color.Black)
             }
-
-
-
-
-
+            Spacer(Modifier.height(spacer.dp))
              Column(
                  modifier = Modifier.fillMaxWidth(),
                  horizontalAlignment = Alignment.CenterHorizontally
@@ -145,14 +141,23 @@ fun RegScreen(navController: NavController, regViewModel: RegViewModel = viewMod
                  MainButton("Зарегистрироваться",
                      checked = isChecked) { regViewModel.SignUp() }
              }
+            Spacer(Modifier.height(spacer.dp))
 
-            Row(modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center) {
-                NavButton("Есть аккаунт?", "Войти") { navController.navigate(NavigationRoutes.SIGNIN) {
-                    popUpTo(NavigationRoutes.REG) {
-                        inclusive = true
+            Column(modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Bottom) {
+                Row(
+                    modifier = Modifier.fillMaxWidth()
+                        .padding(0.dp, 0.dp, 0.dp, 45.dp),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    NavButton("Есть аккаунт?", "Войти") {
+                        navController.navigate(NavigationRoutes.SIGNIN) {
+                            popUpTo(NavigationRoutes.REG) {
+                                inclusive = true
+                            }
+                        }
                     }
-                } }
+                }
             }
         }
     }

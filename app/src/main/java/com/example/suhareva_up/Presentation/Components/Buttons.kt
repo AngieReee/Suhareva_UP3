@@ -44,6 +44,7 @@ fun MainButton(title: String, checked: Boolean, onClick:()-> Unit){
     ) {
         Text(title,
             fontSize = 18.sp,
+            fontWeight = FontWeight.W300,
             color = Color.White)
     }
 }
@@ -102,11 +103,11 @@ fun CustomCheckbox(
         Image(
             painter = painterResource(id = R.drawable.checkbox),
             contentDescription = "Unchecked",
-            modifier = Modifier.size(30.dp)
+            modifier = Modifier.size(20.dp)
         )
         AnimatedVisibility(
             visible = checked,
-            modifier = Modifier.size(30.dp)
+            modifier = Modifier.size(20.dp)
             /*exit = shrinkOut(shrinkTowards = Alignment.TopStart) + fadeOut()*/
         ) {
             //the check only (without the surrounding box)
