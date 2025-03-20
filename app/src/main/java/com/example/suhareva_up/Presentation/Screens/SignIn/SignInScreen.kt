@@ -110,7 +110,7 @@ fun SignInScreen(navController: NavController, signinViewModel: SignInViewModel 
                 MainButton(
                     "Войти",
                     checked = true
-                ) { signinViewModel.SignIn() }
+                ) { signinViewModel.SignIn(navController) }
             }
             Spacer(Modifier.height(spacer.dp))
             Column(modifier = Modifier.fillMaxSize(),

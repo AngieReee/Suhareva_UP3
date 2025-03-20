@@ -14,6 +14,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import com.example.suhareva_up.Presentation.Navigations.NavigationRoutes
 
 class SignInViewModel: ViewModel() {
     private val uiState = mutableStateOf(SignInClass()) // переменная, которая взаимодействует с классом SignInClass
@@ -28,7 +31,7 @@ class SignInViewModel: ViewModel() {
         resultState.value = ResultState.Initialized
     }
 
-    fun SignIn() {
+    fun SignIn(navController: NavController) {
         resultState.value = ResultState.Loading
         if (uiState.value.isEmailError) {
             viewModelScope.launch {
@@ -39,7 +42,11 @@ class SignInViewModel: ViewModel() {
                         password = uiState.value.password
                     }
                     Log.d("SignIn", "Success")
-
+                    navController.navigate(NavigationRoutes.MAIN) {
+                        popUpTo(NavigationRoutes.SIGNIN) {
+                            inclusive = true
+                        }
+                    }
                     resultState.value = ResultState.Success("Success")
                 } catch (_ex: AuthRestException) {
                     Log.d("SignIn", _ex.message.toString())

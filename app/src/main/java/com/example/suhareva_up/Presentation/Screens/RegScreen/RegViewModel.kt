@@ -5,10 +5,12 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
 import com.example.suhareva_up.Data.Models.Profile
 import com.example.suhareva_up.Domain.Constant.supabase
 import com.example.suhareva_up.Domain.State.RegClass
 import com.example.suhareva_up.Domain.State.ResultState
+import com.example.suhareva_up.Presentation.Navigations.NavigationRoutes
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.auth.exception.AuthRestException
 import io.github.jan.supabase.auth.providers.builtin.Email
@@ -31,7 +33,7 @@ class RegViewModel: ViewModel() {
         resultState.value = ResultState.Initialized
     }
 
-    fun SignUp()
+    fun SignUp(navController: NavController)
     {
         resultState.value = ResultState.Loading
         if (uiState.value.isEmailError && uiState.value.email.isNotEmpty()) {
@@ -53,6 +55,11 @@ class RegViewModel: ViewModel() {
                         null)
                     supabase.from("profiles").insert(user)
                     resultState.value = ResultState.Success("Success")
+                    navController.navigate(NavigationRoutes.SIGNIN) {
+                        popUpTo(NavigationRoutes.REG) {
+                            inclusive = true
+                        }
+                    }
                 } catch (ex: AuthRestException) {
                     Log.d("Регистрация","Не вышло")
                     Log.d("Регистрация","${ex.error}")

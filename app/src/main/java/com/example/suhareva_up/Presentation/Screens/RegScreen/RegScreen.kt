@@ -139,7 +139,7 @@ fun RegScreen(navController: NavController, regViewModel: RegViewModel = viewMod
                  horizontalAlignment = Alignment.CenterHorizontally
              ) {
                  MainButton("Зарегистрироваться",
-                     checked = isChecked) { regViewModel.SignUp() }
+                     checked = isChecked) { regViewModel.SignUp(navController) }
              }
             Spacer(Modifier.height(spacer.dp))
 

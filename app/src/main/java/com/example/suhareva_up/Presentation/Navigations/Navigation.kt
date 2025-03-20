@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.suhareva_up.Presentation.Screens.MainScreen.MainScreen
 import com.example.suhareva_up.Presentation.Screens.RegScreen.RegScreen
 import com.example.suhareva_up.Presentation.Screens.SignIn.SignInScreen.SignInScreen
 import com.example.suhareva_up.Presentation.Screens.SplashScreen.SplashScreen
@@ -13,7 +14,7 @@ import com.example.suhareva_up.Presentation.Screens.SplashScreen.SplashScreen
 @Composable
 fun Navigation(){
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = NavigationRoutes.SPLASH,
+    NavHost(navController = navController, startDestination = NavigationRoutes.MAIN,
         enterTransition = { EnterTransition.None },
         exitTransition = { ExitTransition.None }){
 
@@ -27,6 +28,10 @@ fun Navigation(){
 
         composable(NavigationRoutes.SIGNIN){
             SignInScreen(navController)
+        }
+
+        composable(NavigationRoutes.MAIN){
+            MainScreen(navController)
         }
     }
 }
