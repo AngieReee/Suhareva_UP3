@@ -56,6 +56,8 @@ class RegViewModel: ViewModel() {
                 } catch (ex: AuthRestException) {
                     Log.d("Регистрация","Не вышло")
                     Log.d("Регистрация","${ex.error}")
+                    Log.d("Регистрация","${ex.errorDescription}")
+                    Log.d("Регистрация","${ex.errorCode}")
                     resultState.value = ResultState.Error(ex.errorDescription)
                 }
             }

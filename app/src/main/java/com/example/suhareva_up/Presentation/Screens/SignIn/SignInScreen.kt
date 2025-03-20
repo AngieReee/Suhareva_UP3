@@ -26,11 +26,12 @@ import com.example.suhareva_up.Presentation.Components.NavButton
 import com.example.suhareva_up.Presentation.Components.PasswordTextField
 import com.example.suhareva_up.Presentation.Navigations.NavigationRoutes
 import com.example.suhareva_up.Presentation.Screens.RegScreen.RegViewModel
+import com.example.suhareva_up.Presentation.Screens.SignIn.SignInViewModel
 
 @Composable
-fun SignInScreen(navController: NavController, regViewModel: RegViewModel = viewModel()) {
+fun SignInScreen(navController: NavController, signinViewModel: SignInViewModel = viewModel()) {
 
-    val uiState = regViewModel.UiState
+    val uiState = signinViewModel.UiState
     var paddingStart: Int = 30;
     var spacer: Int = 15;
 
@@ -76,7 +77,7 @@ fun SignInScreen(navController: NavController, regViewModel: RegViewModel = view
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 EmailTextField(uiState.email, uiState.isEmailError) {
-                    regViewModel.UpdateRegClass(
+                    signinViewModel.UpdateSignInClass(
                         uiState.copy(email = it)
                     )
                 }
@@ -94,7 +95,7 @@ fun SignInScreen(navController: NavController, regViewModel: RegViewModel = view
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 PasswordTextField(uiState.password) {
-                    regViewModel.UpdateRegClass(
+                    signinViewModel.UpdateSignInClass(
                         uiState.copy(
                             password = it
                         )
@@ -109,7 +110,7 @@ fun SignInScreen(navController: NavController, regViewModel: RegViewModel = view
                 MainButton(
                     "Войти",
                     checked = true
-                ) { regViewModel.SignUp() }
+                ) { signinViewModel.SignIn() }
             }
             Spacer(Modifier.height(spacer.dp))
             Column(modifier = Modifier.fillMaxSize(),
