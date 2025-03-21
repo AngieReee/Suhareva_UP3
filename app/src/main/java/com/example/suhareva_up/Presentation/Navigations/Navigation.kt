@@ -14,7 +14,7 @@ import com.example.suhareva_up.Presentation.Screens.SplashScreen.SplashScreen
 @Composable
 fun Navigation(){
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = NavigationRoutes.MAIN,
+    NavHost(navController = navController, startDestination = NavigationRoutes.SPLASH,
         enterTransition = { EnterTransition.None },
         exitTransition = { ExitTransition.None }){
 

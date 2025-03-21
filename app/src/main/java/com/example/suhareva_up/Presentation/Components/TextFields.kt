@@ -91,6 +91,37 @@ fun PasswordTextField(value: String, onvaluechange: (String) -> Unit){
     )
 }
 
+@Composable
+fun SearchLine(value: String, onvaluechange: (String) -> Unit){
+    TextField(
+        value = value,
+        onValueChange = {
+            onvaluechange(it)
+        },
+        placeholder = { Text("Поиск")  },
+        leadingIcon = {
+            Icon(
+                painter = painterResource(id = R.drawable.marker),
+                contentDescription = "",
+                tint = Color(43, 43, 43)
+            )
+        },
+        modifier = Modifier.width(250.dp),
+        colors = TextFieldDefaults.colors(
+            unfocusedContainerColor = Color.White,
+            focusedContainerColor = Color.White,
+            focusedTextColor = Color(106, 106, 106),
+            unfocusedTextColor = Color(106, 106, 106),
+            focusedPlaceholderColor = Color(106, 106, 106),
+            unfocusedPlaceholderColor = Color(106, 106, 106),
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            disabledIndicatorColor = Color.Transparent
+        ),
+        shape = RoundedCornerShape (15.dp))
+    }
+
+
 
 @Composable
 fun EmailTextField(value: String, error: Boolean,  onvaluechange: (String) -> Unit){
